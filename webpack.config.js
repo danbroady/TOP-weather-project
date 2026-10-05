@@ -18,6 +18,7 @@ export default {
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/index.html",
+            favicon: './src/resources/clear-day.svg'
         }),
     ],
     module: {

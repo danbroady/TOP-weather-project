@@ -38,7 +38,6 @@ body {
 
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     /* Colours */
     --main-text-colour: #4A4A4A;
@@ -52,13 +51,11 @@ body {
 header {
     padding: 10px 0;
     width: 100vw;
-    align-content: center;
 }
 #search-container {
     height: 55px;
-    width: clamp(600px, 80%, 1300px);
-    justify-self: center;
-    margin: 0 120px;
+    width: clamp(600px, 80%, 1200px);
+    margin: 0 auto;
     border-radius: 45px;
     border: solid 1px var(--elem-colour);
     display: flex;
@@ -94,11 +91,12 @@ header {
     /* display: none; */
 }
 
+
 /* Main styling */
 main {
     display: grid;
     grid-template: 1fr 1fr/ 1fr minmax(245px, 49%);
-    width: clamp(600px, 80%, 1300px);
+    width: clamp(600px, 80%, 1200px);
     height: 100%;
     margin: 0 auto;
     padding: 0;
@@ -109,11 +107,16 @@ main {
     display: flex;
     flex-direction: column;
     max-width: 500px;
+    justify-self: center;
 }
 
 #headline-svg, #temp-details {
-    width: 300px;
+    width: 280px;
     justify-content: center;
+}
+
+#headline-svg {
+    height: 280px;
 }
 
 #weather-container, #temp-container {
@@ -121,14 +124,14 @@ main {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
-    gap: 20px;
+    gap: 30px;
     width: 100%;
 }
 
 #desc-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     text-align: center;
     color: var(--secondary-text-colour);
 
@@ -146,7 +149,7 @@ main {
 }
 
 #temp-container {
-    margin-top: 15px;
+    margin-top: 25px;
 }
 #temp {
     text-align: center;
@@ -228,6 +231,7 @@ main {
     grid-area: 1 / 1 / -1 / 2;
     align-self: center;
     margin-right: 5px;
+    height: 39px;
 }
 .stat-box > p {
     align-self: center;
@@ -264,13 +268,13 @@ main {
     stroke: #14c46b;
 }
 
+
 /* Interactive styling */
 .minmax-temp, .stat-box {
     transition: 300ms;
 }
 .minmax-temp:hover, .stat-box:hover {
     transform: scale(1.05);
-    /* transform: translateY(-2%); */
 }
 
 #search-container {
