@@ -44,6 +44,7 @@ body {
     --secondary-text-colour: #7b7b7b;
     --background-colour: #FAFAFA;
     --elem-colour: #ecebeb;
+    --big-elem-colour: #dedede;
 
 }
 
@@ -54,7 +55,7 @@ header {
 }
 #search-container {
     height: 55px;
-    width: clamp(600px, 80%, 1200px);
+    width: clamp(600px, 85%, 1200px);
     margin: 0 auto;
     border-radius: 45px;
     border: solid 1px var(--elem-colour);
@@ -95,19 +96,21 @@ header {
 /* Main styling */
 main {
     display: grid;
-    grid-template: 1fr 1fr/ 1fr minmax(245px, 49%);
+    grid-template: 1fr/ 1fr minmax(245px, 45%);
     width: clamp(600px, 80%, 1200px);
     height: 100%;
     margin: 0 auto;
     padding: 0;
+    gap: 20px;
     overflow-x: auto;
 }
 
 #headline {
     display: flex;
     flex-direction: column;
-    max-width: 500px;
+    width: 100%;
     justify-self: center;
+    padding: 10px;
 }
 
 #headline-svg, #temp-details {
@@ -133,7 +136,10 @@ main {
     flex-direction: column;
     gap: 30px;
     text-align: center;
-    color: var(--secondary-text-colour);
+    text-wrap: wrap;
+    word-wrap: break-word;
+    word-break: break-word;
+    color: var(--primary-text-colour);
 
 }
 #weather-desc {
@@ -150,6 +156,7 @@ main {
 
 #temp-container {
     margin-top: 25px;
+    margin-bottom: 25px;
 }
 #temp {
     text-align: center;
@@ -192,7 +199,7 @@ main {
 
 #max-temp-svg, #min-temp-svg {
     height: 50px;
-    padding-left: 10px;
+    padding-left: 8px;
     grid-area: 1 / 1 / -1 / 2;
     align-self: center;
     justify-self: center;
@@ -300,3 +307,9 @@ input::-webkit-search-cancel-button {
 }
 
 
+/* Other styling */
+
+#headline, #other-stats {
+    border-radius: 10px;
+    background-color: var(--big-elem-colour);
+}

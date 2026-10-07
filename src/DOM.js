@@ -33,12 +33,14 @@ export function renderWeather(data) {
 };
 
 
-
+// Helper function - update main weather SVG
 function updateIcon(code) {
     const weatherSvg = document.querySelector('#headline-svg');
     weatherSvg.src = iconMap[code] || partCloudDayIcon;
 };
 
+
+// Helper function - update all temperature elements
 function updateTemps(temp, feels, max, min) {
     const headlineTemp = document.querySelector('#temp');
     headlineTemp.textContent = `${temp}°C`;
@@ -52,6 +54,7 @@ function updateTemps(temp, feels, max, min) {
     headlineMin.textContent = `${min}°C`;
 };
 
+// Helper function - update weather description & location elems
 function updateDesc(conditions, location) {
     const headlineDesc = document.querySelector('#weather-desc');
     headlineDesc.textContent = conditions;
@@ -60,6 +63,7 @@ function updateDesc(conditions, location) {
     headlineLocation.textContent = location;
 };
 
+// Helper function - update all stat boxes
 function updateStats(data) {
     const statBoxes = document.querySelectorAll('[data-stat]');
     console.log(statBoxes);

@@ -38,12 +38,20 @@ function processRawData(rawData) {
         uvIndex: rawData.days[0].uvindex,
         windGust: `${rawData.currentConditions.windgust} mph`,
         windSpeed: `${rawData.currentConditions.windspeed} mph`,
-        sunrise: rawData.days[0].sunrise,
-        sunset: rawData.days[0].sunset,
+        sunrise: formatTime(rawData.days[0].sunrise),
+        sunset: formatTime(rawData.days[0].sunset),
         icon: rawData.currentConditions.icon,
     };
 };
 
+function formatTime(time) {
+    const date = new Date(`1970-01-01T${time}`);
+    return new Intl.DateTimeFormat('en-UK', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true})
+        .format(date);
+};
 
 // DOM manipulation
 renderWeather(cleanData);
