@@ -20,7 +20,10 @@ const iconMap = {
     'wind': windIcon,
 }
 
-export function renderWeather(data) {
+export function renderWeather(data, loadingElems) {
+    // Remove 'unloaded' class animation
+    loaded(loadingElems);
+
     // Update headline svg
     updateIcon(data.icon);
 
@@ -33,12 +36,16 @@ export function renderWeather(data) {
 };
 
 
+// Helper function - remove 'unloaded' animation class
+function loaded(elems) {
+    elems.forEach(elem => elem.classList.remove('unloaded'));
+}
+
 // Helper function - update main weather SVG
 function updateIcon(code) {
     const weatherSvg = document.querySelector('#headline-svg');
     weatherSvg.src = iconMap[code] || partCloudDayIcon;
 };
-
 
 // Helper function - update all temperature elements
 function updateTemps(temp, feels, max, min) {

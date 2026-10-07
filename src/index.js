@@ -7,7 +7,8 @@ async function APIRequest(location) {
     try {
         const response = await fetch(APILink);
         if (!response.ok) {
-            throw new Error (`HTTP Error: ${response.status}`);
+            alert('Invalid location, please try again');
+            return;
         }
         const data = await response.json();
         return data;
@@ -19,12 +20,9 @@ async function APIRequest(location) {
 
 
 // Data processing & formatting
-let rawData = await APIRequest('Manchester');
-console.log(rawData);
-let cleanData = processRawData(rawData);
-console.log(cleanData);
 
 function processRawData(rawData) {
+    if (!rawData) return;
     return {
         location: rawData.resolvedAddress.charAt(0).toUpperCase() + rawData.resolvedAddress.slice(1),
         condition: rawData.currentConditions.conditions,
@@ -53,15 +51,42 @@ function formatTime(time) {
         .format(date);
 };
 
-// DOM manipulation
-renderWeather(cleanData);
-
-
-
-
 
 
 // Event handling
+const apiElems = document.querySelectorAll('.unloaded'); // List all elems with .hidden class prior to removal for future API calls
+const searchBox = document.querySelector('#search');
 
+    // Toggle search clear button hidden class
+const clearBtn = document.querySelector('.clear-btn');
+searchBox.addEventListener('input', () => {
+    if (searchBox.value.length > 0) {
+        clearBtn.classList.remove('hidden');
+    } else {
+        clearBtn.classList.add('hidden');
+    };
+});
+
+    // Clear button functionality
+clearBtn.addEventListener('click', () => {
+    searchBox.value = '';
+});
+
+
+    // Searching functionality
+searchBox.addEventListener('keydown', async (event) => {
+    if (event.key === 'Enter') {
+        let query = searchBox.value.trim();
+        if (!query) return;
+
+        // Call API
+        let rawData = await APIRequest(query);
+        let cleanData = processRawData(rawData);
+        if (!cleanData) return;
+
+        // DOM manipulation
+        renderWeather(cleanData, apiElems);
+    };
+});
 
 
